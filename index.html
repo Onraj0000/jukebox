@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script src="./script.js"></script>
+
+    <title>Audio Player</title>
+  </head>
+  
+  
+  <body>
+     
+    <div class="navbar">
+      <a class="active" href="#home">Player</a>
+      <a href="werkvorm.html">Werkvorm</a>
+      <a href="#contact">Contact</a>
+ 
+    </div>
+
+    <h2 class="playing" id="nowPlaying">Now playing- <span class="song-name"></span></h2>
+    <div class="controls">
+      <button class="btn previous" id="playPrevious">
+        <i class="ph-bold ph-skip-back"></i>
+      </button>
+      <button class="btn play-pause" id="playPause" function(playPauseSong())>
+        <i id="play-pause-icon" class="ph-bold ph-play"></i>
+      </button>
+      <button class="btn next" id="playNext"><i class="ph-bold ph-skip-forward"></i></button>
+    </div>
+    <button class="button" onclick="getCode()"> Authcode</button>
+
+  </body>
+</html>
