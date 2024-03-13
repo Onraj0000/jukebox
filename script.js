@@ -123,6 +123,7 @@ function runSpotify(){
    
       var current_track = state.track_window.current_track.name;
       var next_track = state.track_window.next_tracks[0];
+      
    
       console.log('Currently Playing', current_track);
       console.log('Playing Next', next_track);
@@ -168,13 +169,29 @@ function runSpotify(){
       });
     };
 
+    player.addListener('player_state_changed', ({
+      duration,
+      track_window: { current_track }
+    }) => {
+      console.log('Currently Playing', current_track);
+      console.log('Duration of Song', duration);
+      document.getElementById('song-name').innerHTML = current_track.name;
+    });
+    
+    // player.addListener('player_state_change', ({
+    //   track_window: {current_track}
+
+    // }) =>  {
+    //   console.log('Currently PLaying' , current_track);
+    //
+    // });
+
     player.connect();
-  }
 
-  // document.getElementById('nowPlaying').innerHTML {
+    
 
-  // }
-
+    
+}
 
 
 
@@ -205,5 +222,3 @@ function runSpotify(){
 
 //    document.getElementById("code").innerHTML = code;
 //  }
-
-// document.getElementById('myRange').value //addEventListener('click', function() {

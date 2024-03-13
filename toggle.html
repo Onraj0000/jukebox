@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spotify Web Playback SDK Quick Start</title>
+</head>
+<body>
+    <h1>Spotify Web Playback SDK Quick Start</h1>
+    <button id="togglePlay">Toggle Play</button>
+
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script>
+
+        
+        window.onSpotifyWebPlaybackSDKReady = () => {
+            //const token = 'BQBZryBLMQKKTeuhRiCLIUC-xB0uP2i66MbpGodu_BS8rCgSHMlLVu-S3EFidtey-KN2hyKzLX7V5qoyE2so-1k41ET_m_vEsaTVvxmrKqDuS_bBV3pBNqCXlRSirwlqUJUzjRF3J9pSafx1VPC3XZFd3lJplbcmpq5Dt1btuWbMhRUjBmri_tjdWFPC5iH7ax5WhgFCNqhxPMj_rS37CTbTUGq5';
+            const token = 'AQCFrCbm_zHivV3ZdrF9iOhtbIWzaH_WbXw9v9lxenHcsx42109Diw2O9Kmxt-S-RTqoQ84EV1vayb2BxsM8NuOXaOmTaSs_GirfFWS9222OiyDBQ2f8hlONfo1eWQBPOukP4eXdICbRsxQXPn6iXblF3NCvqHgsq9o-b4p60jWAQs6LTV-tijhSEn6-pXL1MiLWgxA0IkMJYaA9kEzQz9SqaV3S0VkAngTxkg1yKPI5WCEw5_EMafZYm4istwOODdHS5md_j4NgZVSIjYhfqG0Y8EB95-g9tycvAdxdn_GqJHI91vdRpOtGpetxr84s8PMEh_L3ipOHdx-J-LTmIDhFJlC4B0du0pY68qvVlQo';
+           
+            
+            
+            const player = new Spotify.Player({
+                name: 'Jukebox',
+                getOAuthToken: cb => { cb(token); },
+                volume: 0.5
+            });
+
+            // Ready
+            player.addListener('ready', ({ device_id }) => {
+                console.log('Ready with Device ID', device_id);
+            });
+
+            // Not Ready
+            player.addListener('not_ready', ({ device_id }) => {
+                console.log('Device ID has gone offline', device_id);
+            });
+
+            player.addListener('initialization_error', ({ message }) => {
+                console.error('initialization_error: ' + message);
+            });
+
+            player.addListener('authentication_error', ({ message }) => {
+                console.error('authentication_error: ' + message);
+            });
+
+            player.addListener('account_error', ({ message }) => {
+                console.error('account_error: ' + message);
+            });
+
+            document.getElementById('togglePlay').onclick = function() {
+              player.togglePlay();
+            };
+
+            player.connect();
+        }
+    </script>
+</body>
+</html>
