@@ -1,21 +1,20 @@
 // Code voor de play/pause knoppen
 
-const playPauseIcon = document.querySelector('#play-pause-icon');
-
 var playing = false;
 var spotiData;
 // var getUrlParam;
 var player;
 
 function playPauseSong() {
+  const playPauseIcon = document.getElementById('play-pause-icon');
   if(!playing){
     //currentSong.play();
-    playPauseIcon.className = 'ph-bold ph-pause';
+    playPauseIcon.className = "ph-bold ph-pause";
     playing = true;
   }
   else {
     //currentSong.pause();
-    playPauseIcon.className = 'ph-bold ph-play';
+    playPauseIcon.className = "ph-bold ph-play";
     playing = false;
   }
 }
@@ -155,6 +154,7 @@ function runSpotify(){
 
     document.getElementById('playPause').onclick = function() {
       player.togglePlay();
+      playPauseSong();
     };
 
     document.getElementById('playPrevious').onclick = function() {
@@ -171,11 +171,16 @@ function runSpotify(){
 
     player.addListener('player_state_changed', ({
       duration,
+      paused,
       track_window: { current_track }
     }) => {
+      console.log('Paused', paused);
       console.log('Currently Playing', current_track);
       console.log('Duration of Song', duration);
       document.getElementById('song-name').innerHTML = current_track.name;
+
+      playing = paused;
+      playPauseSong();
     });
     
     // player.addListener('player_state_change', ({
